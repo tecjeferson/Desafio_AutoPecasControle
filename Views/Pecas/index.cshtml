@@ -1,0 +1,43 @@
+﻿@model  IEnumerable<lojaDePecasDeCarro.Models.Pecas>
+
+<h1>Auto items list</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                @if (@item.InStock == true)
+                {
+                    <td>In Stock</td>
+                }
+                else
+                {
+                    <td>Out of Stock</td>
+                }
+            </tr>
+            }
+        
+    </tbody>
+
+</table>
+
+   
+
+       
+
+  
