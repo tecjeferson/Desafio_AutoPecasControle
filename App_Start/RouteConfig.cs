@@ -29,6 +29,16 @@ namespace lojaDePecasDeCarro
                     id = UrlParameter.Optional
                 }
             );
+            routes.MapRoute(
+                name: "FindById",
+                url: "{controller}/{action}/{id}",
+                defaults: new
+                {
+                    controller = "Pecas",
+                    action = "FindById",
+                    id = UrlParameter.Optional
+                }
+            );
         }
 
       

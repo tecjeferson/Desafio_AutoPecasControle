@@ -1,0 +1,50 @@
+﻿@model lojaDePecasDeCarro.Models.Pecas
+
+<h1>Hello World</h1>
+
+<div class="row">
+    <div class="col">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => Model.Id)
+                @Html.TextBoxFor(m => Model.Id, new { @class="form-control"})
+            </div>
+            <input type="submit" name="Buscar" class="btn btn-primary" />
+
+ 
+        }
+
+
+        @using (Html.BeginForm())
+        {
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Has Stock</th>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(Model => Model.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => Model.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => Model.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Model => Model.InStock)
+                    </td>
+                </tr>
+            </table>
+
+        }
+
+
+
+    </div>
+</div>

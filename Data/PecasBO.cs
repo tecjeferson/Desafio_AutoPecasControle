@@ -1,6 +1,7 @@
 ﻿using lojaDePecasDeCarro.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -52,9 +53,110 @@ namespace lojaDePecasDeCarro.Data
             {
                 throw err;
             }
+                                  
+            
+        }
 
+
+        public Pecas GetById(int? id)
+        {
+            try
+            {
+                Pecas pc = new Pecas();
+
+                string connectionString = GetConnectionString();
+                string SqlCommand = @"SELECT ID, NAME, DESCRIPTION, PRICE, INSTOCK FROM PecasAuto WHERE ID = @id";
+
+                SqlConnection sqlConnection = new SqlConnection(connectionString);
+                sqlConnection.Open();
+                
+                using (SqlCommand command = new SqlCommand(SqlCommand, sqlConnection))
+                {
+                    command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+
+                    SqlDataReader reader = command.ExecuteReader();
+                   
+
+                    while (reader.Read())
+                    {
+                        pc.Id = Convert.ToInt32(reader["Id"]);
+                        pc.Name = reader["Name"].ToString();
+                        pc.Description = reader["Description"].ToString();
+                        pc.Price = Convert.ToInt32(reader["Price"]);
+                        pc.InStock = Convert.ToBoolean(reader["InStock"]);
+                      
+                    }
+
+                }
+                sqlConnection.Close();
+                return pc;
+            }
             
-            
+      
+            catch (Exception err)
+            {
+                throw err;
+            }
+
+        }
+        
+        
+        public void Create(Pecas pecas)
+        {
+            string connectionString = GetConnectionString();
+                        
+            string SqlCommand = @"INSERT INTO PecasAuto (Id, Name, Description, Price, InStock) VALUES (@Id, @Name, @Description, @Price, @InStock)";
+            //string Query = @"SELECT MAX(ID) AS LastID PecasAuto";
+
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            sqlConnection.Open();
+
+
+            using (SqlCommand command = new SqlCommand(SqlCommand, sqlConnection))
+            {
+
+                
+                var newID = GetPecas().Last().Id+1;
+                            
+
+                command.Parameters.AddWithValue("@Id", newID);
+                command.Parameters.AddWithValue("@Name", pecas.Name);
+                command.Parameters.AddWithValue("@Description", pecas.Description);
+                command.Parameters.AddWithValue("@Price", pecas.Price);
+                command.Parameters.AddWithValue("@InStock", pecas.InStock);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception err)
+                {
+                    throw err;
+                }
+                finally
+                {
+                    sqlConnection.Close();
+                }
+            }
+
+           
+        }
+
+        public void Delete(int Id)
+        {
+            string connectionString = GetConnectionString();
+            string SqlCommand = @"DELETE FROM PecasAuto WHERE ID = @id";
+
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            sqlConnection.Open();
+
+            using (SqlCommand command = new SqlCommand(SqlCommand, sqlConnection))
+            {
+                command.Parameters.Add("@id", SqlDbType.Int).Value = Id;
+
+                command.ExecuteNonQuery();
+                sqlConnection.Close();
+            }
         }
     }
 }

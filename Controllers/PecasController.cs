@@ -10,6 +10,7 @@ namespace lojaDePecasDeCarro.Controllers
 {
     public class PecasController : Controller
     {
+        private PecasBO pbo = new PecasBO();
         public PecasController()
         {
             
@@ -19,42 +20,58 @@ namespace lojaDePecasDeCarro.Controllers
         public ActionResult Index(PecasBO model)
         {
 
-            PecasBO db = new PecasBO();
-            var ListItem = db.GetPecas().ToList();
-
+            var ListItem = pbo.GetPecas().ToList();
             return View(ListItem);
-            
-            
         }
 
         // GET: Pecas/Details/5
-        public ActionResult Details(int id)
+        
+        [HttpGet]
+        public ActionResult FindById()
         {
-            return View();
+           return View();
         }
 
-        // GET: Pecas/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Pecas/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult FindById(int? id)
         {
+            var ListById = pbo.GetById(id);
+
+            if(ListById != null)
+            {
+                return View(ListById);
+            }
+            return View();
+
+        }
+                              
+
+        public ActionResult Create(Pecas pecas)
+        {
+            var result = 0;
+
             try
             {
-                // TODO: Add insert logic here
-
+                pbo.Create(pecas);
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                throw ex;
             }
+
+           
         }
 
+
+        [HttpGet]// GET: Pecas/Create
+        public ActionResult Create()
+        {
+
+            return View();
+        }
+
+      
         // GET: Pecas/Edit/5
         public ActionResult Edit(int id)
         {
@@ -78,21 +95,27 @@ namespace lojaDePecasDeCarro.Controllers
         }
 
         // GET: Pecas/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
+            var ListById = pbo.GetById(id);
+
+            if (ListById != null)
+            {
+                return View(ListById);
+            }
             return View();
         }
 
         // POST: Pecas/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
+                pbo.Delete(id);
 
-                return RedirectToAction("Index");
-            }
+               return RedirectToAction("Index");
+           }
             catch
             {
                 return View();

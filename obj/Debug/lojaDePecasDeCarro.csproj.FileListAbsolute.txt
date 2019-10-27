@@ -64,8 +64,6 @@ C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\bin\Newtonsoft
 C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\bin\Antlr3.Runtime.pdb
 C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\obj\Debug\lojaDePecasDeCarro.csprojAssemblyReference.cache
-C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\obj\Debug\lojaDePecasDeCarro.csproj.CoreCompileInputs.cache
 C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\obj\Debug\lojaDePecasDeCarro.csproj.CopyComplete
 C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\obj\Debug\lojaDePecasDeCarro.dll
 C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\obj\Debug\lojaDePecasDeCarro.pdb

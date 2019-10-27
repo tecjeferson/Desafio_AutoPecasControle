@@ -1,43 +1,59 @@
-﻿@model  IEnumerable<lojaDePecasDeCarro.Models.Pecas>
+﻿@model  List<lojaDePecasDeCarro.Models.Pecas>
 
 <h1>Auto items list</h1>
 
-<table class="table table-hover">
+
+<form asp-controller="Movies" asp-action="Index">
+    <p>
+        Title: <input type="text" name="SearchString">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
     <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Price</th>
-            <th scope="col">Stock</th>
-        </tr>
-    </thead>
-    <tbody>
-        
-            @foreach (var item in Model)
-            {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.Description</td>
-                <td>@item.Price</td>
-                @if (@item.InStock == true)
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
                 {
-                    <td>In Stock</td>
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.Price</td>
+                        @if (@item.InStock == true)
+                        {
+                            <td>In Stock</td>
+                        }
+                        else
+                        {
+                            <td>Out of Stock</td>
+                        }
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new {item.Id})
+                    </td>
+                    </tr>
+
+
                 }
-                else
-                {
-                    <td>Out of Stock</td>
-                }
-            </tr>
-            }
-        
-    </tbody>
+                
+            </tbody>
 
-</table>
+        </table>
 
-   
 
-       
 
-  
+
+
+
