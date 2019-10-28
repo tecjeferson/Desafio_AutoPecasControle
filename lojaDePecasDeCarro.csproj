@@ -211,6 +211,7 @@
     <Content Include="Views\Pecas\FindById.cshtml" />
     <Content Include="Views\Pecas\Create.cshtml" />
     <Content Include="Views\Pecas\Delete.cshtml" />
+    <Content Include="Views\Pecas\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -106,19 +106,15 @@ namespace lojaDePecasDeCarro.Data
             string connectionString = GetConnectionString();
                         
             string SqlCommand = @"INSERT INTO PecasAuto (Id, Name, Description, Price, InStock) VALUES (@Id, @Name, @Description, @Price, @InStock)";
-            //string Query = @"SELECT MAX(ID) AS LastID PecasAuto";
-
+            
             SqlConnection sqlConnection = new SqlConnection(connectionString);
             sqlConnection.Open();
 
 
             using (SqlCommand command = new SqlCommand(SqlCommand, sqlConnection))
-            {
-
-                
+            {            
                 var newID = GetPecas().Last().Id+1;
-                            
-
+      
                 command.Parameters.AddWithValue("@Id", newID);
                 command.Parameters.AddWithValue("@Name", pecas.Name);
                 command.Parameters.AddWithValue("@Description", pecas.Description);
@@ -140,6 +136,40 @@ namespace lojaDePecasDeCarro.Data
             }
 
            
+        }
+
+        public void Edit(Pecas pecas)
+        {
+            string connectionString = GetConnectionString();
+            string SqlCommand = @"UPDATE PecasAuto SET NAME = @NAME, DESCRIPTION = @DESCRIPTION, PRICE = @PRICE, INSTOCK = @INSTOCK WHERE ID = @ID";
+            
+
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            sqlConnection.Open();
+
+            using(SqlCommand command = new SqlCommand(SqlCommand, sqlConnection))
+            {
+                //var newId = GetPecas().Last().Id++;
+
+                command.Parameters.AddWithValue("@Id", pecas.Id);
+                command.Parameters.AddWithValue("@Name", pecas.Name);
+                command.Parameters.AddWithValue("@Description", pecas.Description);
+                command.Parameters.AddWithValue("@Price", pecas.Price);
+                command.Parameters.AddWithValue("@InStock", pecas.InStock);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception err)
+                {
+                    throw err;
+                }
+                finally
+                {
+                    sqlConnection.Close();
+                }
+            }
         }
 
         public void Delete(int Id)

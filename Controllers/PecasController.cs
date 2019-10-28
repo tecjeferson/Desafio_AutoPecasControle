@@ -21,6 +21,7 @@ namespace lojaDePecasDeCarro.Controllers
         {
 
             var ListItem = pbo.GetPecas().ToList();
+            
             return View(ListItem);
         }
 
@@ -45,19 +46,17 @@ namespace lojaDePecasDeCarro.Controllers
 
         }
                               
-
+        [HttpPost]
         public ActionResult Create(Pecas pecas)
         {
-            var result = 0;
-
             try
             {
                 pbo.Create(pecas);
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch (Exception err)
             {
-                throw ex;
+                throw err;
             }
 
            
@@ -73,25 +72,32 @@ namespace lojaDePecasDeCarro.Controllers
 
       
         // GET: Pecas/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public ActionResult Edit(int? id)
         {
+            var ListById = pbo.GetById(id);
+
+            if (ListById != null)
+            {
+                return View(ListById);
+            }
             return View();
         }
 
         // POST: Pecas/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Pecas pecas)
         {
             try
             {
-                // TODO: Add update logic here
-
+                pbo.Edit(pecas);
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception err)
             {
-                return View();
+                throw err;
             }
+            
         }
 
         // GET: Pecas/Delete/5

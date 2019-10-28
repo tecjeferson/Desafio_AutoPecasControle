@@ -79,3 +79,4 @@ C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\bin\System.Web
 C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\bin\System.Web.WebPages.xml
 C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\bin\System.Web.WebPages.Deployment.xml
 C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\bin\System.Web.WebPages.Razor.xml
+C:\Users\jefbg\source\repos\lojaDePecasDeCarro\lojaDePecasDeCarro\obj\Debug\lojaDePecasDeCarro.csprojAssemblyReference.cache
